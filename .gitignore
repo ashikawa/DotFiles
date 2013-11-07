@@ -9,5 +9,8 @@
 
 *.sublime-workspace
 
+npm-debug.log
+node_modules
+
 _notes/
 dwsync.xml
