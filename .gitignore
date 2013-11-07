@@ -1,0 +1,13 @@
+.buildpath
+.metadata
+.project
+.settings
+
+.DS_Store
+
+.svn/
+
+*.sublime-workspace
+
+_notes/
+dwsync.xml
