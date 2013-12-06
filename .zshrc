@@ -76,7 +76,5 @@ function ssh-config {
   sed -n "/Host .*$1.*/,/^$/p" ~/.ssh/config
 }
 
-alias git-archive="git archive --format=zip --prefix=archive/ $1 `git diff --name-only $1 $2`"
-
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)" 
