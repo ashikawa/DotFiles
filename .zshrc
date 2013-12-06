@@ -10,7 +10,7 @@ zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
 zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
 zstyle ':vcs_info:*' actionformats '[%b|%a]'
 precmd () { vcs_info }
-RPROMPT=$RPROMPT'${vcs_info_msg_0_}'
+RPROMPT='${vcs_info_msg_0_}'
 PS1="${USER}@${HOST%%.*} %1~ %(!.#.$) "
 
 setopt auto_cd
@@ -75,6 +75,8 @@ zstyle ':completion:*:hosts' hosts $hosts
 function ssh-config {
   sed -n "/Host .*$1.*/,/^$/p" ~/.ssh/config
 }
+
+alias git-archive="git archive --format=zip --prefix=archive/ $1 `git diff --name-only $1 $2`"
 
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)" 
