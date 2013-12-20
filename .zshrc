@@ -52,7 +52,6 @@ alias ls='ls -GF'
 alias mv='mv -i'
 alias rm='rm -i'
 
-alias composer="php /usr/bin/composer.phar"
 alias globalip="curl ifconfig.me"
 alias jslint="jslint --color"
 alias lessc="lessc -yui-compress"
