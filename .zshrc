@@ -22,8 +22,6 @@ setopt auto_pushd
 setopt correct
 setopt magic_equal_subst
 
-autoload -U compinit; compinit
-
 setopt auto_list
 setopt auto_menu
 setopt list_packed
