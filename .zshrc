@@ -62,6 +62,9 @@ alias zf="/Library/PHP/Zend/bin/zf.sh"
 
 whoiscon() { whois $@ | iconv -f ISO-2022-JP -t UTF-8 }
 
+alias diff='colordiff -u'
+export LESS='-R'
+
 alias -s js=node
 alias -s less=lessc
 alias -s php=php
