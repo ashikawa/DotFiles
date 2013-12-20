@@ -1,5 +1,9 @@
 export LANG=ja_JP.UTF-8
 
+fpath=(/path/to/homebrew/share/zsh-completions $fpath)
+autoload -U compinit
+compinit -u
+
 PS1="${USER}@${HOST%%.*} %1~ %(!.#.$) "
 
 autoload -Uz vcs_info
