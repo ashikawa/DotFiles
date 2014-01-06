@@ -17,6 +17,9 @@ precmd () { vcs_info }
 RPROMPT='${vcs_info_msg_0_}'
 PS1="${USER}@${HOST%%.*} %1~ %(!.#.$) "
 
+autoload -Uz zmv
+alias zmv='noglob zmv -W'
+
 setopt auto_cd
 setopt auto_pushd
 setopt correct
