@@ -58,6 +58,7 @@ alias jslint="jslint --color"
 alias lessc="lessc -yui-compress"
 alias phpfix="php-cs-fixer fix"
 alias phpunit="phpunit --colors"
+alias php-server="php -S 0.0.0.0:8000"
 alias zf="/Library/PHP/Zend/bin/zf.sh"
 
 whoiscon() { whois $@ | iconv -f ISO-2022-JP -t UTF-8 }
