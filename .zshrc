@@ -21,6 +21,7 @@ autoload -Uz zmv
 alias zmv='noglob zmv -W'
 
 setopt auto_cd
+function chpwd() { ls }
 setopt auto_pushd
 setopt correct
 setopt magic_equal_subst
@@ -72,10 +73,6 @@ alias -s php=php
 alias -s pl=perl
 alias -s py=python
 alias -s rb=ruby
-
-function cd() {
-  builtin cd $@ && ls;
-}
 
 hosts=( ${(@)${${(M)${(s:# :)${(zj:# :)${(Lf)"$([[ -f ~/.ssh/config ]] && < ~/.ssh/config)"}%%\#*}}##host(|name) *}#host(|name) }/\*} )
 zstyle ':completion:*:hosts' hosts $hosts
