@@ -1,105 +1,19 @@
 export LANG=ja_JP.UTF-8
 
-fpath=(/path/to/homebrew/share/zsh-completions $fpath)
-autoload -U compinit
-compinit -u
+source ~/.zsh/rc/setopt.zsh
+source ~/.zsh/rc/completion.zsh
+source ~/.zsh/rc/colors.zsh
+source ~/.zsh/rc/alias.zsh
+source ~/.zsh/rc/extract.zsh
+source ~/.zsh/rc/git.zsh
+source ~/.zsh/rc/functions.zsh
+source ~/.zsh/rc/dev.zsh
 
-PS1="${USER}@${HOST%%.*} %1~ %(!.#.$) "
+# source ~/.zsh/plugin/xxxx.zsh
 
-autoload -Uz vcs_info
-setopt prompt_subst
-zstyle ':vcs_info:git:*' check-for-changes true
-zstyle ':vcs_info:git:*' stagedstr "%F{yellow}!"
-zstyle ':vcs_info:git:*' unstagedstr "%F{red}+"
-zstyle ':vcs_info:*' formats "%F{green}%c%u[%b]%f"
-zstyle ':vcs_info:*' actionformats '[%b|%a]'
-precmd () { vcs_info }
-RPROMPT='${vcs_info_msg_0_}'
 PS1="${USER}@${HOST%%.*} %1~ %(!.#.$) "
 
 autoload -Uz zmv
 alias zmv='noglob zmv -W'
 
-setopt auto_cd
 function chpwd() { ls }
-setopt auto_pushd
-setopt correct
-setopt magic_equal_subst
-
-setopt auto_list
-setopt auto_menu
-setopt list_packed
-setopt list_types
-
-setopt extended_glob
-unsetopt caseglob
-
-HISTFILE=~/.zsh_history
-HISTSIZE=10000
-SAVEHIST=10000
-
-setopt bang_hist
-setopt hist_ignore_dups
-setopt share_history
-setopt hist_reduce_blanks
-
-export CLICOLOR=true
-zstyle ':completion:*' list-colors ''
-autoload -U colors; colors
-
-alias bc='bc -l'
-alias cp='cp -i'
-alias ll='ls -lh'
-alias ls='ls -GF'
-alias mv='mv -i'
-alias rm='rm -i'
-
-alias globalip="curl ifconfig.me"
-alias jslint="jslint --color"
-alias lessc="lessc -yui-compress"
-alias phpfix="php-cs-fixer fix"
-alias phpunit="phpunit --colors"
-alias php-server="php -S 0.0.0.0:8000"
-alias zf="/Library/PHP/Zend/bin/zf.sh"
-
-whoiscon() { whois $@ | iconv -f ISO-2022-JP -t UTF-8 }
-
-alias diff='colordiff -u'
-export LESS='-R'
-
-alias -s js=node
-alias -s less=lessc
-alias -s php=php
-alias -s pl=perl
-alias -s py=python
-alias -s rb=ruby
-
-function extract() {
-  case $1 in
-    *.tar.gz|*.tgz) tar xzvf $1;;
-    *.tar.xz) tar Jxvf $1;;
-    *.zip) unzip $1;;
-    *.lzh) lha e $1;;
-    *.tar.bz2|*.tbz) tar xjvf $1;;
-    *.tar.Z) tar zxvf $1;;
-    *.gz) gzip -dc $1;;
-    *.bz2) bzip2 -dc $1;;
-    *.Z) uncompress $1;;
-    *.tar) tar xvf $1;;
-    *.arj) unarj $1;;
-  esac
-}
-alias -s {gz,tgz,zip,lzh,bz2,tbz,Z,tar,arj,xz}=extract
-
-function runcpp () { g++ -O2 $1; ./a.out }
-alias -s {c,cpp}=runcpp
-
-hosts=( ${(@)${${(M)${(s:# :)${(zj:# :)${(Lf)"$([[ -f ~/.ssh/config ]] && < ~/.ssh/config)"}%%\#*}}##host(|name) *}#host(|name) }/\*} )
-zstyle ':completion:*:hosts' hosts $hosts
-
-function ssh-config {
-  sed -n "/Host .*$1.*/,/^$/p" ~/.ssh/config
-}
-
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)" 
