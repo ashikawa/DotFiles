@@ -6,3 +6,16 @@
     diff = true
 [alias]
     lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+[browse-remote "xxx.git.backlog.jp"]
+    top = https://{host.gsub('.git.','.')}/git{path}
+    ref = https://{host.gsub('.git.','.')}/git{path}/tree/{short_ref}
+    rev = https://{host.gsub('.git.','.')}/git{path}/commit/{commit}
+    file = "https://{host.gsub('.git.','.')}/git{path}/{file.directory? and :tree or :blob}/{short_rev}/{file}{lines && \"#%s\" % lines.join(\"-\")}"
+[browse-remote "github.com"]
+    top = https://{host}/{path}
+    ref = https://{host}/{path}/tree/{short_ref}
+    rev = https://{host}/{path}/commit/{commit}
+    pr = https://{host}/{path}/pull/{short_ref}
+    file = "https://{host}/{path}/{file.directory? and :tree or :blob}/{short_rev}/{file}{lines && \"#L%s\" % lines.join(\"-\")}"
+[web]
+    browser = open
